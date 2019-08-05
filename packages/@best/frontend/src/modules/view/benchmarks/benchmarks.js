@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 
-import { connectStore, store } from 'store/store';
+import { connectRedux, store } from 'store/store';
 import { zoomChanged } from 'store/actions';
 
 export default class ViewBenchmarks extends LightningElement {
@@ -11,12 +11,15 @@ export default class ViewBenchmarks extends LightningElement {
 
     @track viewZoom;
 
-    @wire(connectStore, { store })
-    storeChange({ benchmarks, view }) {
+    @wire(connectRedux, {
+        store,
+        mapState: ({ benchmarks: { items }, view }) => ({ items, view })
+    })
+    storeChange({ items, view }) {
         if (view.benchmark === 'all') {
-            this.visibleBenchmarks = benchmarks.items;
+            this.visibleBenchmarks = items;
         } else {
-            this.visibleBenchmarks = benchmarks.items.filter(bench => bench.name === view.benchmark);
+            this.visibleBenchmarks = items.filter(bench => bench.name === view.benchmark);
         }
 
         this.visibleBenchmarks = this.visibleBenchmarks.map((bench, idx) => ({

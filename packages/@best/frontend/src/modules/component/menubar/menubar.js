@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 
-import { connectStore, store } from 'store/store';
+import { connectRedux, store } from 'store/store';
 import { timingChanged, benchmarksChanged, metricsChanged, zoomChanged } from 'store/actions';
 
 export default class ComponentMenubar extends LightningElement {
@@ -13,11 +13,14 @@ export default class ComponentMenubar extends LightningElement {
     @track viewMetric;
     @track viewZoom = {};
 
-    @wire(connectStore, { store })
-    storeChange({ benchmarks, view }) {
-        this.benchmarkNames = benchmarks.items.map(bench => bench.name);
+    @wire(connectRedux, {
+        store,
+        mapState: ({ benchmarks: { items }, view }) => ({ items, view })
+    })
+    storeChange({ items, view }) {
+        this.benchmarkNames = items.map(bench => bench.name);
 
-        const metricSet = new Set(benchmarks.items.flatMap(bench => bench.metrics.map(metric => metric.name)));
+        const metricSet = new Set(items.flatMap(bench => bench.metrics.map(metric => metric.name)));
         this.metricNames = [...metricSet];
 
         this.viewTiming = view.timing;

@@ -18,4 +18,4 @@ import * as urlstorage from './urlstorage';
 
 export const store = createStore(combineReducers(reducers), urlstorage.loadState(), applyMiddleware(thunk, urlstorage.middleware));
 
-export { connectStore } from './wire-adapter';
+export { connectStore, connectRedux } from './wire-adapter';

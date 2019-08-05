@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 
-import { connectStore, store } from 'store/store';
+import { connectRedux, store } from 'store/store';
 import { selectProject } from 'store/actions';
 
 export default class ViewSidebar extends LightningElement {
@@ -9,13 +9,16 @@ export default class ViewSidebar extends LightningElement {
 
     hasSelectedInitialProject = false;
 
-    @wire(connectStore, { store })
-    storeChange({ projects }) {
-        this.selectedId = projects.selectedProjectId;
+    @wire(connectRedux, {
+        store,
+        mapState: ({ projects: { items, selectedProjectId } }) => ({ items , selectedProjectId })
+    })
+    storeChange({ items , selectedProjectId }) {
+        this.selectedId = selectedProjectId;
 
-        this.projects = projects.items.map(item => ({
+        this.projects = items.map(item => ({
             ...item,
-            classes: item.id === projects.selectedProjectId ? 'item selected' : 'item'
+            classes: item.id === selectedProjectId ? 'item selected' : 'item'
         }));
     }
 

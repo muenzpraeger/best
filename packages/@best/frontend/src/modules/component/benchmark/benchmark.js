@@ -1,7 +1,7 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import { drawPlot, buildTrends, buildLayout, relayout, createAnnotation, removeAnnotation } from './plots';
 
-import { connectStore, store } from 'store/store';
+import { connectRedux, store } from 'store/store';
 import { fetchComparison, comparisonChanged } from 'store/actions';
 
 export default class ComponentBenchmark extends LightningElement {
@@ -22,12 +22,15 @@ export default class ComponentBenchmark extends LightningElement {
 
     @api metric = 'all';
 
-    @wire(connectStore, { store })
-    storeChanged({ view }) {
-        this.comparisonResults = view.comparison.results;
-        this.viewComparisonCommits = view.comparison.commits;
-        this.comparisonName = view.comparison.benchmarkName;
-        this.metric = view.metric;
+    @wire(connectRedux, {
+        store,
+        mapState: ({ view: { metric, comparison } }) => ({ metric, comparison })
+    })
+    storeChanged({ metric, comparison }) {
+        this.comparisonResults = comparison.results;
+        this.viewComparisonCommits = comparison.commits;
+        this.comparisonName = comparison.benchmarkName;
+        this.metric = metric;
     }
 
     _first;

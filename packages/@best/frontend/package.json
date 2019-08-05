@@ -18,6 +18,7 @@
         "@lwc/rollup-plugin": "^1.0.0",
         "apicache": "^1.4.0",
         "compression": "^1.7.4",
+        "deep-object-diff": "^1.1.0",
         "express": "^4.17.1",
         "lwc-services": "^1",
         "query-string": "^6.6.0",
