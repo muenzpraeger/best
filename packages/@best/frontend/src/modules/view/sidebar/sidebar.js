@@ -27,10 +27,10 @@ export default class ViewSidebar extends LightningElement {
             this.hasSelectedInitialProject = true;
             if (this.selectedId) { // from URL
                 const project = this.projects.find(proj => proj.id === this.selectedId);
-                store.dispatch(selectProject(project, false));
+                store.dispatch(selectProject(project));
             } else {
                 const firstProject = this.projects[0];
-                store.dispatch(selectProject(firstProject, true));
+                store.dispatch(selectProject(firstProject));
             }
         }
     }
@@ -39,7 +39,7 @@ export default class ViewSidebar extends LightningElement {
         const projectId = parseInt(event.target.dataset.id, 10);
         const project = this.projects.find(proj => proj.id === projectId);
         if (project) {
-            store.dispatch(selectProject(project, true));
+            store.dispatch(selectProject(project));
         }
     }
 }

@@ -110,11 +110,10 @@ export function fetchComparison(benchmarkName, commits) {
     }
 }
 
-export function selectProject(project, shouldResetView) {
+export function selectProject(project) {
     return async (dispatch) => {
         dispatch(clearBenchmarks());
-        
-        if (shouldResetView) { dispatch(resetView()) }
+        dispatch(resetView());
 
         dispatch({ type: PROJECT_SELECTED, id: project.id });
         

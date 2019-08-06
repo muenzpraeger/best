@@ -60,10 +60,11 @@ function createStateChangedFunction() {
                 }
                 
                 // temporary check that allows us to see when we are sending new state only bc of identity
+                // TODO: eventually kill this
                 if (changed) {
                     const diffed = diff(previous, mapped);
                     if (!Object.keys(diffed).length) {
-                        console.log(`identity is only change on '${key}'`, previous[key], mapped[key]);
+                        console.warn(`identity is only change on '${key}'`, previous[key], mapped[key]);
                     }
                 }
 
@@ -71,11 +72,6 @@ function createStateChangedFunction() {
             });
 
             if (!changes) return;
-
-            if (mapped.hasOwnProperty('items')) {
-                // const delta = diff(previous, mapped);
-                // console.log('yes changes', delta, Object.keys(mapped).join(' '))
-            }
         }
 
         previous = mapped;
