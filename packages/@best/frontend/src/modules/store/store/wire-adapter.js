@@ -1,5 +1,5 @@
 import { register, ValueChangedEvent } from '@lwc/wire-service';
-import { diff } from 'deep-object-diff';
+// import { diff } from 'deep-object-diff';
 
 export function connectStore(store) {
     return store.getState();
@@ -56,15 +56,6 @@ function createStateChangedFunction() {
                     if (previous[key] instanceof Object && mapped[key] instanceof Object
                         && Object.keys(previous[key]).length === 0 && Object.keys(mapped[key]).length === 0) {
                         changed = false;
-                    }
-                }
-                
-                // temporary check that allows us to see when we are sending new state only bc of identity
-                // TODO: eventually kill this
-                if (changed) {
-                    const diffed = diff(previous, mapped);
-                    if (!Object.keys(diffed).length) {
-                        console.warn(`identity is only change on '${key}'`, previous[key], mapped[key]);
                     }
                 }
 

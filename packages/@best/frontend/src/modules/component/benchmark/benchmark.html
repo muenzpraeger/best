@@ -10,7 +10,7 @@
             </template>
         </div>
         <template for:each={selectedPoints} for:item="point">
-            <component-commit-info key={point.commit} hidden={point.hidden} pendingcompare={point.pendingCompare} commit={point.commit} left={point.left} top={point.top} oncompare={onCompareClick} onclose={closeCommitInfo}></component-commit-info>
+            <component-commit-info key={point.commit} hidden={point.hidden} pending-compare={point.pendingCompare} commit={point.commit} left={point.left} top={point.top} oncompare={onCompareClick} onclose={closeCommitInfo}></component-commit-info>
         </template>
         <div class="graph-wrapper">
             <div class="graph" lwc:dom="manual"></div>

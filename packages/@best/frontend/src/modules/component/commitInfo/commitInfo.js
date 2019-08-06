@@ -1,6 +1,6 @@
 import { LightningElement, api, track, wire } from 'lwc';
 
-import { connectStore, store } from 'store/store';
+import { connectRedux, store } from 'store/store';
 import { fetchCommitInfoIfNeeded } from 'store/actions';
 
 export default class ComponentCommitInfo extends LightningElement {
@@ -8,11 +8,14 @@ export default class ComponentCommitInfo extends LightningElement {
     @api top;
     @api left;
     @api hidden;
-    @api pendingcompare;
+    @api pendingCompare;
 
     @track commitInfo = {};
 
-    @wire(connectStore, { store })
+    @wire(connectRedux, {
+        store,
+        mapState: ({ commitInfo }) => ({ commitInfo })
+    })
     storeChanged({ commitInfo }) {
         this.commitInfo = commitInfo[this.commit];
     }
@@ -34,7 +37,7 @@ export default class ComponentCommitInfo extends LightningElement {
     }
 
     get compareButtonText() {
-        return this.pendingcompare ? 'Uncompare' : 'Compare';
+        return this.pendingCompare ? 'Uncompare' : 'Compare';
     }
 
     close() {
