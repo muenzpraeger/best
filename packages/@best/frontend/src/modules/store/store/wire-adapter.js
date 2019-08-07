@@ -1,5 +1,4 @@
 import { register, ValueChangedEvent } from '@lwc/wire-service';
-// import { diff } from 'deep-object-diff';
 
 export function connectStore(store) {
     return store.getState();
@@ -34,7 +33,7 @@ export function connectRedux(store) {
     return store.getState();
 }
 
-function createStateChangedFunction() {
+export function createStateChangedNotifier() {
     let previous;
     return (store, config, eventTarget) => {
         const { mapState = (state) => state } = config;
@@ -46,14 +45,11 @@ function createStateChangedFunction() {
                 let changed = previous[key] !== mapped[key];
 
                 if (changed) {
-                    // quick non-identity-based empty array equality check
+                    // quick non-identity-based empty array/object equality check
                     if (previous[key] instanceof Array && mapped[key] instanceof Array
                         && previous[key].length === 0 && mapped[key].length === 0) {
                         changed = false;
-                    }
-
-                    // quick non-identity-based empty object equality check
-                    if (previous[key] instanceof Object && mapped[key] instanceof Object
+                    } else if (previous[key] instanceof Object && mapped[key] instanceof Object
                         && Object.keys(previous[key]).length === 0 && Object.keys(mapped[key]).length === 0) {
                         changed = false;
                     }
@@ -82,7 +78,7 @@ register(connectRedux, eventTarget => {
 
         store = config.store;
 
-        const notify = createStateChangedFunction();
+        const notify = createStateChangedNotifier();
         notify(store, config, eventTarget);
 
         subscription = store.subscribe(() => notify(store, config, eventTarget));

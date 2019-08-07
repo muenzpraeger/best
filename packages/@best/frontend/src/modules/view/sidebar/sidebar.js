@@ -11,9 +11,9 @@ export default class ViewSidebar extends LightningElement {
 
     @wire(connectRedux, {
         store,
-        mapState: ({ projects: { items, selectedProjectId } }) => ({ items , selectedProjectId })
+        mapState: ({ projects: { items, selectedProjectId } }) => ({ items, selectedProjectId })
     })
-    storeChange({ items , selectedProjectId }) {
+    storeChange({ items, selectedProjectId }) {
         this.selectedId = selectedProjectId;
 
         this.projects = items.map(item => ({
