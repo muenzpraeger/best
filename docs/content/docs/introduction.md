@@ -3,17 +3,17 @@ title: Understanding Best
 ---
 
 # Understanding Best
-Best came out of the need to have a tool that can consistently benchmark Javascript in the same way we can unit test our code. In pursuit of this goal, Best follows an opinionated model of performance benchmarking. Read on to learn about how Best will help you ensure you have performant code, and most importantly, that it stays that way over time.
+Best came out of our need to consistently benchmark Javascript the same way we unit test our code. In pursuit of this goal, Best follows an opinionated model of performance benchmarking. Read on to learn how Best can help you create performant code and, most importantly, that it stays that way over time.
 
 ::: note
-The name of the project *Best* was inspired by *Jest* - changing the *"J"* to a *"B"* out of *"Benchmarks"* - The idea was that running benchmarks and doing perf testing should be as easy as unit testing.
+The name of the project *Best* was inspired by *Jest* - changing the *"J"* to a *"B"* for *"benchmarks"*. The idea was that running benchmarks and doing perf testing should be as easy as unit testing.
 :::
 
 ## The "Best" Manifesto
-Once you have written your performance benchmarks, you pass them off to Best to process, run, and then analyze. This guide describes how that all happens.
+Once you have written your performance benchmarks, you pass them off to Best to process, run, and analyze. This guide describes how that all happens.
 
 ### Best Builder
-Before we can run your benchmarks, we have compile them into an artifact that can be re-run at anytime and correctly reflects the state of your code. We do this by using Rollup to generate a bundle that contains your benchmarks, the code you are testing, and the Best Runtime.
+Before you can run your benchmarks, you must compile them into an artifact that Best can re-run at any time. You do this by using Rollup to generate a bundle that contains your benchmarks, the code you are testing, and the Best Runtime.
 
 We inject the runtime at build time and this is what allows us to actually measure your code's performance in the browser.
 
