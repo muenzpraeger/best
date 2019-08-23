@@ -10,7 +10,7 @@ The name of the project *Best* was inspired by *Jest* - changing the *"J"* to a 
 :::
 
 ## The Best Manifesto
-_Performance testing should be as easy to write, run and trust as unit testing._
+_Performance benchmarking should be as easy to write, run and trust as unit testing._
 
 ## How Best Works
 Once you have written your performance benchmarks, you pass them off to Best to process, run, and analyze. This guide describes how that all happens.
@@ -20,7 +20,7 @@ Before you can run your benchmarks, you must compile them into an artifact that 
 
 ![Builder](/assets/images/builder.svg)
 
-By including the Best runtime in the generated artifact you can run (and re-run) a performance test at any time, in any environment (including your local browser), for any version of your code! If you want to compare performance on your local machine then just run them locally. Or if your dedicated hardware changes, you can re-run all the tests to recreate historical performance profiles in your new environment.
+By including the Best runtime in the generated artifact you can run (and re-run) a performance benchmark at any time, in any environment (including your local browser), for any version of your code! If you want to compare performance on your local machine then just run them locally. Or if your dedicated hardware changes, you can re-run all the tests to recreate historical performance profiles in your new environment.
 
 ### Running Locally
 While you are making changes we recommend you run Best locally to measure how your code's performance characteristics have changed.
@@ -28,14 +28,14 @@ While you are making changes we recommend you run Best locally to measure how yo
 This works great for local development. But the goal of Best is to create reproducible measurements of your code's performance and that is where Best Agents come in.
 
 ### Best Agents
-Agents allow Best to create reproducible results. By running Best Agents on dedicated hardware you ensure the code and performance test are run in a consistent environment.
+Agents allow Best to create reproducible results. By running Best Agents on dedicated hardware you ensure the code and performance benchmark are run in a consistent environment.
 
 Best Agents are simple: they run a benchmark and report how long it took. The client, like your machine or a CI, is responsible for compiling and analyzing the results.
 
 Each Best Agent is responsible for running the test in a single environment. For example, first Agent runs Chrome 74, the second Agent runs Chrome 76, and the third Agent runs Edge.
 
 ### Best Hubs
-As you increase the number of Agents to support a growing team or organization, coordinating and efficiently using all Agents becomes challenging. Best Hubs provide a single entry point for a client to run performance tests. The Best Hub orchestrates an unlimited number of Agents to run performance tests. It runs tests in parallel across Agents, of the same and different environment, to deliver results as quickly as possible.
+As you increase the number of Agents to support a growing team or organization, coordinating and efficiently using all Agents becomes challenging. Best Hubs provide a single entry point for a client to run performance benchmarks. The Best Hub orchestrates an unlimited number of Agents to run benchmarks. It runs tests in parallel across Agents, of the same and different environment, to deliver results as quickly as possible.
 
 ::: tip
 Multiple teams and users may use a single Best Hub. This avoids teams running their own performance infrastructure. Scale the Hub up by adding as many Agents as you need.
