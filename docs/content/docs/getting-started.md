@@ -74,7 +74,7 @@ module.exports = {
 To further customize your Best setup read about [configuration](/guide/configuration#best-configuration).
 
 ## Running Benchmarks Locally
-By default Best uses Runner Headless (Chrome from Puppeteer). Install that:
+By default Best uses Runner Headless ([Chrome from Puppeteer](https://github.com/GoogleChrome/puppeteer)). Install that:
 
 ```sh
 yarn add @best/runner-headless -D

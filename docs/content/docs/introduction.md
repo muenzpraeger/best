@@ -28,7 +28,7 @@ While you are making changes we recommend you run Best locally to measure how yo
 This works great for local development. But the goal of Best is to create reproducible measurements of your code's performance and that is where Best Agents come in.
 
 ### Best Agents
-Agents allow Best to create reproducible results. By running Best Agents on dedicated hardware you ensure the code and performance benchmark are run in a consistent environment.
+Agents allow Best to create reproducible results. Agents should run in a consistent environment on dedicated hardware to ensure the code and performance benchmark produce consistent results.
 
 Best Agents are simple: they run a benchmark and report how long it took. The client, like your machine or a CI, is responsible for compiling and analyzing the results.
 
